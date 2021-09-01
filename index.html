@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Jugando</title>
+    <link rel="stylesheet" type="text/css" href="./css/estilos.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="todo todoHeader" id="principal">
+        <header>
+            <div class="contenedor">
+                <div class="logo">
+                    <p class="tituloLogo">Aprende Jugando</p>
+                </div>
+                <button class="modo">
+                    <i class="fas fa-adjust"></i>
+                </button>
+            </div>
+        </header>
+        <div class="contenedorForm">
+            <form id="login" class="login">
+                <p class="tituloForm">Ingresa tu Usuario para jugar.</p>
+                <div>
+                    <label for="usuario">
+                        <p>Usuario</p>
+                        <input type="text" id="inputLogin" placeholder="Ingresar Usuario">
+                        <span class="error" id="error"></span>
+                        <span class="nice" id="nice"></span>
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" value="Ingresar">
+                    <a href="#" class="elegir" id="elegir">Elegir Usuario</a>
+                </div>
+            </form>
+            <div class="esconder escoger" id="escoger">
+                <p class="tituloForm">Elige un usuario para jugar.</p>
+                <a href="#" class="elegir" id="cambiarUser">Ingresar Nuevo Usuario</a>
+            </div>
+        </div>
+    </div>
+    <script src="./javascript/main.js"></script>
+</body>
+</html>

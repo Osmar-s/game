@@ -1,0 +1,160 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+/* ----------------- FUENTES */
+@font-face {
+    font-family:"bold";
+    src: url("../fuentes/Roboto-Bold.ttf");
+}
+
+@font-face {
+    font-family: "regular";
+    src: url("../fuentes/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "delgada";
+    src: url("../fuentes/Roboto-Thin.ttf");
+}
+
+/* ----------------- VARIABLES*/
+:root{
+    --txtBold:'bold';
+    --txtRegular:'regular';
+    --txtDelgada:'delgada';
+    --colorPrincipal:#222831;
+    --colorLetra:#EEEEEE;
+    --colorFondo:#393E46;
+    --colorBotonP:#00ADB5;
+}
+
+.todo{
+    width: 100%;
+    min-height: 100vh;
+    background: var(--colorFondo);
+}
+
+/* ----------------------------- ESTILOS HEADER */
+header{
+    width: 100%;
+    height: 4em;
+    position: -webkit-sticky;
+    position: fixed;
+    top: 0;
+    background: var(--colorPrincipal);
+}
+
+.contenedor{
+    width: 100%;
+    max-width: 1444px;
+    height: inherit;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todoHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloLogo{
+    font-size: 1.5rem;
+    color:var(--colorLetra);
+    font-family: var(--txtBold);
+}
+
+.modo{
+    border: none;
+    background: transparent;
+    font-size: 1.3rem;
+    color:var(--colorLetra);
+}
+
+/* ---------------------- ESTILOS FORMULARIO LOGIN */
+.contenedorForm{
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 15px;
+    font-family: var(--txtRegular);
+    background: var(--colorPrincipal);
+}
+
+.tituloForm{
+    font-size: 1.5rem;
+    color:var(--colorLetra);
+    font-family: var(--txtBold);
+    text-align: center;
+}
+
+.login div label p{
+    color:var(--colorLetra);
+    font-size: 1rem;
+    font-family: var(--txtRegular);
+}
+
+.login input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+}
+
+.login input[type="submit"]{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    background: var(--colorBotonP);
+    border:none;
+    cursor: pointer;
+    color:var(--colorLetra);
+    font-family: var(--txtBold);
+}
+
+.error,.nice{
+    display: block;
+    margin-top: 10px;
+}
+.error{color:#FF5252;}
+.nice{color:#52FF53;}
+
+.login div{
+    margin: 20px 0;
+}
+
+.elegir{
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    text-align: center;
+}
+
+.escoger{
+    display: flex;
+    flex-direction: column;
+}
+
+.escoger button{
+    padding: 10px 0;
+    margin:10px 0;
+    border: none;
+    background: var(--colorBotonP);
+    color:var(--colorLetra);
+    font-family: var(--txtBold);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.esconder{
+    display: none;
+}
