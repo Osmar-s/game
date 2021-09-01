@@ -3,7 +3,8 @@
 //VARIABLES
 const d = document,$principal = d.getElementById("principal"),$formulario = d.getElementById("login"),
     $inputLogin = d.getElementById("inputLogin"),$escoger = d.getElementById("escoger"),
-    $elegir = d.getElementById("elegir"),$cambiarUser = d.getElementById("cambiarUser");
+    $elegir = d.getElementById("elegir"),$cambiarUser = d.getElementById("cambiarUser"),
+    $inico = d.getElementById("inicio");
 
 
 let usuario;
@@ -47,7 +48,6 @@ const SHOWUSUARIOS = () => {
 }
 
 const CREARUSUARIO = () => {
-    $principal.classList.add("esconder");
     const DATOS = {
         scoreMax:0,
         recordQ:0,
@@ -72,9 +72,16 @@ const VERIFICAR = () => {
     }
 }
 
-const ENTRAR = () => {
+const ENTRAR = (user = "") => {
     $principal.classList.add("esconder");
-    usuario = $inputLogin.value;
+    $inico.classList.remove("esconder");
+    usuario = user || $inputLogin.value;
+    const datosUser = JSON.parse(localStorage.getItem(usuario));
+    d.getElementById("infoUsuario").innerHTML = `
+        <p class="usuario" id="usuario"><span class="subTxt">Usuario:</span> ${usuario}</p>
+        <p class="usuario" id="scoreMax"><span class="subTxt">Puntuaci&oacute;n Maxima:</span> ${datosUser.scoreMax}</p>
+        <p class="usuario" id="recordQu"><span class="subTxt">Respuestas Seguidas:</span> ${datosUser.recordQ}</p>
+    `;
 }
 
 //EVENTOS
@@ -101,7 +108,7 @@ $cambiarUser.addEventListener("click",() => {
 
 d.addEventListener("click",(e) => {
     if(e.target.matches('#escoger button')){
-        ENTRAR();
         usuario = e.target.textContent;
+        ENTRAR(usuario);
     }
 });
