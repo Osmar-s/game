@@ -1,11 +1,11 @@
 *{
     margin:0;
     padding:0;
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
-/* ----------------- FUENTES */
+
 @font-face {
-    font-family:"bold";
+    font-family: "fuerte";
     src: url("../fuentes/Roboto-Bold.ttf");
 }
 
@@ -19,209 +19,154 @@
     src: url("../fuentes/Roboto-Thin.ttf");
 }
 
-/* ----------------- VARIABLES*/
 :root{
-    --txtBold:'bold';
-    --txtRegular:'regular';
-    --txtDelgada:'delgada';
-    --colorPrincipal:#222831;
+    --colorFondoPrincipal: #222831;
+    --colorSecundarioPrincipal:#393E46;
+    --colorPrimario:#00ADB5;
+    --colorSecundario:#393E46;
     --colorLetra:#EEEEEE;
-    --colorFondo:#393E46;
-    --colorBotonP:#00ADB5;
+    --colorLetraError:#FF6565;
+    --colorLetraSecundario:#B7B7B7;
+    --sizeLetraGrande:20px;
+    --sizeLetraMediano:16px;
+    --sizeLetraPequeño:14px;
 }
 
-.todo{
-    width: 100%;
-    min-height: 100vh;
-    background: var(--colorFondo);
-}
-
-/* ----------------------------- ESTILOS HEADER */
-header{
-    width: 100%;
-    height: 4em;
-    position: -webkit-sticky;
-    position: fixed;
-    top: 0;
-    background: var(--colorPrincipal);
-}
-
-.contenedor{
-    width: 100%;
-    max-width: 1444px;
-    height: inherit;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.todoHeader{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.tituloLogo{
-    font-size: 1.5rem;
-    color:var(--colorLetra);
-    font-family: var(--txtBold);
-}
-
-.modo{
-    border: none;
-    background: transparent;
-    font-size: 1.3rem;
-    color:var(--colorLetra);
-}
-
-/* ---------------------- ESTILOS FORMULARIO LOGIN */
-.contenedorForm{
-    width: 90%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 15px;
-    font-family: var(--txtRegular);
-    background: var(--colorPrincipal);
-}
-
-.tituloForm{
-    font-size: 1.5rem;
-    color:var(--colorLetra);
-    font-family: var(--txtBold);
-    text-align: center;
-}
-
-.login div label p{
-    color:var(--colorLetra);
-    font-size: 1rem;
-    font-family: var(--txtRegular);
-}
-
-.login input[type="text"]{
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    margin-top: 10px;
-    border: none;
-    outline: none;
-}
-
-.login input[type="submit"]{
-    width: 100%;
-    padding: 10px 0;
-    font-size: 1rem;
-    background: var(--colorBotonP);
-    border:none;
-    cursor: pointer;
-    color:var(--colorLetra);
-    font-family: var(--txtBold);
-}
-
-.error,.nice{
-    display: block;
-    margin-top: 10px;
-}
-.error{color:#FF5252;}
-.nice{color:#52FF53;}
-
-.login div{
-    margin: 20px 0;
-}
-
-.elegir{
-    width: 100%;
-    display: block;
-    margin-top: 20px;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    text-align: center;
-}
-
-.escoger{
-    display: flex;
-    flex-direction: column;
-}
-
-.escoger button{
-    padding: 10px 0;
-    margin:10px 0;
-    border: none;
-    background: var(--colorBotonP);
-    color:var(--colorLetra);
-    font-family: var(--txtBold);
-    cursor: pointer;
-    font-size: 1rem;
+body{
+    background: var(--colorSecundarioPrincipal);
 }
 
 .esconder{
     display: none;
 }
 
-/* SECCION JUEGO */
-.inicio{
-    position: absolute;
-    top:0;
-}
-section{
-    width: 100%;
-    max-width: 1444px;
-    margin: auto;
-    padding: 10px;
-    border-radius: 10px;
-    background: var(--colorPrincipal);
-}
-
-.usuario{
-    color:var(--colorLetra);
-    font-family: var(--txtRegular);
-    font-size: 1rem;
-    margin: 10px 0;
-}
-
-.infoUsuario{
-    margin-top: 5em;
-}
-
-.seleccionarModo{
-    margin-top: 2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.subTxt{
-    color:rgba(255,255,255,0.5);
-    font-family: var(--txtRegular);
-}
-
-.tituloSelecciona{
-    text-align: center;
-    font-size: 1.2rem;
-    color:var(--colorLetra);
-    font-family: var(--txtDelgada);
-    margin: 5px 0;
-}
-
-.btnModo{
-    width: 100%;
-    max-width: 250px;
-    padding: 10px;
-    margin: 10px auto;
-    background: var(--colorBotonP);
-    border: none;
-    font-family: var(--txtRegular);
-    font-size: 1rem;
-    color:var(--colorLetra);
-    border-radius: 5px;
-}
-
-@media screen and (max-width:1444px){
+/* ESTILOS MOBILE */
+@media screen and (max-width:780px) {
     header{
-        padding: 0 1em;
+        width: 100%;
+        height:60px;
+        background: var(--colorFondoPrincipal);
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    section{
+    .titulo{
+        font-size: var(--sizeLetraGrande);
+        color:var(--colorLetra);
+        font-family: 'fuerte';
+    }
+    .registro{
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .card{
         width: 90%;
+        max-width: 305px;
+        border-radius: 20px;
+        background: var(--colorFondoPrincipal);
+        padding:10px 20px;
+    }
+    .cardRegistro{height: 350px;}
+    .card .titulo{
+        text-align: center;
+        margin-bottom: 36px;
+    }
+    .texto{
+        color:var(--colorLetra);
+        font-family: "delgada";
+        font-size: var(--sizeLetraGrande);
+    }
+    .card input[type="text"]{
+        width: 100%;
+        height: 44px;
+        padding-left: 10px;
+        border-radius: 10px;
+        border:none;
+        font-family: 'delgada';
+        font-size: var(--sizeLetraMediano);
+        margin: 10px 0;
+        outline: none;
+    }
+    .error{
+        color:var(--colorLetraError);
+        font-size: var(--sizeLetraPequeño);
+        font-family: "delgada";
+    }
+    .card input[type="submit"],a,button{
+        width: 100%;
+        height: 44px;
+        font-family: 'fuerte';
+        border:none;
+        outline: none;
+        border-radius:10px;
+        margin-top: 20px;
+    }
+    .card input[type="submit"],button{
+        font-size: var(--sizeLetraMediano);
+        background:var(--colorPrimario);
+        color:var(--colorLetra);
+    }
+    .card a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        background: var(--colorSecundarioPrincipal);
+        color:var(--colorLetraSecundario);
+    }
+    .cardUsuarios .titulo{
+        margin-bottom: 0px;
+    }
+    .juego{
+        width: 100%;
+        min-height: 100vh;
+        padding-top: 5em;
+    }
+    .datosJugador, .escogerModoJuego{
+        width: 90%;
+        margin: auto;
+        background:var(--colorFondoPrincipal);
+        padding:20px;
+        border-radius: 20px;
+    }
+    .datosJugador p{margin: 20px 0;}
+    .txtInfo{
+        color:var(--colorLetraSecundario);
+        font-size: var(--sizeLetraGrande);
+        font-family: 'delgada';
+    }
+    .txtDatos{
+        color:var(--colorLetra);
+        font-size: var(--sizeLetraGrande);
+        font-family: 'regular';
+    }
+    .escogerModoJuego{
+        margin: 20px auto;
+    }
+    .escogerModoJuego .titulo{text-align: center;}
+    .contCerrarSesion{
+        text-align: end;
+    }
+    .contCerrarSesion a{
+        text-decoration: none;
+        color:var(--colorLetraSecundario);
+        font-size: var(--sizeLetraMediano);
+        font-family: 'regular';
+        padding: 5px 10px;
+        background: var(--colorSecundario);
+    }
+}
+
+@media screen and (orientation:landscape){
+    section{
+        margin-top: 4em;
+    }
+    .juego{
+        padding-top: 0;
     }
 }

@@ -4,65 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprende Jugando</title>
-    <link rel="stylesheet" type="text/css" href="./css/estilos.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/estilos.css">
 </head>
 <body>
-    <!-- PRINCIPAL -->
-    <div class="todo todoHeader" id="principal">
-        <header>
-            <div class="contenedor">
-                <div class="logo">
-                    <p class="tituloLogo">Aprende Jugando</p>
-                </div>
-                <button class="modo">
-                    <i class="fas fa-adjust"></i>
-                </button>
-            </div>
-        </header>
-        <div class="contenedorForm">
-            <form id="login" class="login">
-                <p class="tituloForm">Ingresa tu Usuario para jugar.</p>
-                <div>
-                    <label for="usuario">
-                        <p>Usuario</p>
-                        <input type="text" id="inputLogin" placeholder="Ingresar Usuario">
-                        <span class="error" id="error"></span>
-                        <span class="nice" id="nice"></span>
-                    </label>
-                </div>
-                <div>
-                    <input type="submit" value="Ingresar">
-                    <a href="#" class="elegir" id="elegir">Elegir Usuario</a>
-                </div>
+    <header>
+        <p class="titulo">Aprende Jugando</p>
+    </header>
+    <!-- CONTENEDOR REGISTRO -->
+    <section class="esconder" id="registro">
+        <div class="registro">
+            <!-- LOGIN -->
+            <form class="card cardRegistro" id="login">
+                <p class="titulo">Registrate</p>
+                <label for="inputUsuario">
+                    <p class="texto">Usuario</p>
+                    <input type="text" id="inputUsuario" placeholder="Ingresar Usuario">
+                </label>
+                <span class="error" id="error"></span>
+                <input type="submit" value="Ingresar">
+                <a href="#" id="elegirUsuario">Elegir Usuario</a>
             </form>
-            <div class="esconder escoger" id="escoger">
-                <p class="tituloForm">Elige un usuario para jugar.</p>
-                <a href="#" class="elegir" id="cambiarUser">Ingresar Nuevo Usuario</a>
+            <!-- REGISTROS GUARDADOS -->
+            <div class="card cardUsuarios esconder" id="usuarios">
+                <p class="titulo">Elige un Usuario</p>
+                <div id="contenedorBtnUsuarios">
+                </div>
+                <a href="#" id="crearNuevoUsuario">Crear Nuevo Usuario</a>
             </div>
         </div>
-    </div>
-    <!-- INICIO DE JUEGO -->
-    <div class="todo inicio esconder" id="inicio">
-        <header>
-            <div class="contenedor">
-                <div class="logo">
-                    <p class="tituloLogo">Aprende Jugando</p>
+    </section>
+    <section id="juego">
+        <div class="juego">
+            <div class="datosJugador" id="datosJugador">
+                <p><span class="txtInfo">Usuario: </span><span class="txtDatos">Sarita</span></p>
+                <p><span class="txtInfo">M&aacute;xima puntuaci&oacute;n: </span><span class="txtDatos">0</span></p>
+                <p><span class="txtInfo">Nivel: </span><span class="txtDatos">0</span></p>
+                <p><span class="txtInfo">XP: </span><span class="txtDatos">0/100</span></p>
+                <div class="contCerrarSesion">
+                    <a href="#" id="cerrarSesion">Cerrar Sesi&oacute;n</a>
                 </div>
-                <button class="modo">
-                    <i class="fas fa-adjust"></i>
-                </button>
             </div>
-        </header>
-        <section class="infoUsuario" id="infoUsuario"></section>
-        <section class="seleccionarModo" id="seleccionarModo">
-            <p class="tituloSelecciona">Selecciona Uno</p>
-            <button class="btnModo">Fac&iacute;l</button>
-            <button class="btnModo">Intermedio</button>
-            <button class="btnModo">Dif&iacute;cil</button>
-        </section>
-    </div>
+            <div class="escogerModoJuego" id="escogerModoJuego">
+                <p class="titulo">Modo de Juego</p>
+                <button value="facil">Fac&iacute;l</button>
+                <button value="intermedio">Intermedio</button>
+                <button value="dificil">Dif&iacute;cil</button>
+            </div>
+        </div>
+    </section>
     <script src="./javascript/main.js"></script>
 </body>
 </html>

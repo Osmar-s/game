@@ -1,114 +1,63 @@
 'use strict';
 
-//VARIABLES
-const d = document,$principal = d.getElementById("principal"),$formulario = d.getElementById("login"),
-    $inputLogin = d.getElementById("inputLogin"),$escoger = d.getElementById("escoger"),
-    $elegir = d.getElementById("elegir"),$cambiarUser = d.getElementById("cambiarUser"),
-    $inico = d.getElementById("inicio");
+// VARIABLES
+const d = document, $btnElegirUsuario = d.getElementById("elegirUsuario"),
+    $contLogin = d.getElementById("login"),$contUsuarios = d.getElementById("usuarios"),
+    $btnCrearNuevoUsuario = d.getElementById("crearNuevoUsuario"),$inputUsuario = d.getElementById("inputUsuario"),
+    $txtError = d.getElementById("error"),$btnCerrarSesion = d.getElementById("cerrarSesion"),
+    $contRegistro = d.getElementById("registro"),$contJuego = d.getElementById("juego");
 
+// FUNCIONES
+const EsconderContRegistro = () => {
+    $contLogin.classList.toggle("esconder");
+    $contUsuarios.classList.toggle("esconder");
+}
 
-let usuario;
-//FUNCIONES
-
-const ERRORLOGIN = () => {
-    if($inputLogin.value === ""){
-        d.getElementById("error").textContent = "Ingresa un usuario :)";
-        d.getElementById("nice").textContent = ""
+const MostrarUsuarios = () => {
+    const $f = d.createDocumentFragment();
+    for(let $i = 0; $i < localStorage.length; $i++){
+        const $btn = d.createElement("button");
+        $btn.textContent = localStorage.key($i);
+        $f.appendChild($btn);
     }
+    d.getElementById("contenedorBtnUsuarios").replaceChildren($f);
 }
 
-const FECHA = () => {
-    const fec = new Date();
-    return `${fec.getDate()}/${fec.getMonth() + 1}/${fec.getFullYear()} ${fec.getHours()}:${fec.getMinutes()}:${fec.getSeconds()}`;
-}
-
-const ESCONDER = () => {
-    $formulario.classList.toggle("esconder");
-    $escoger.classList.toggle("esconder");
-}
-
-const GETUSUARIOS = () => {
-    if(localStorage.length > 0){
-        SHOWUSUARIOS();
-    }
-}
-
-const SALUDAR = () => {
-    console.log(usuario)
-}
-
-const SHOWUSUARIOS = () => {
-    const $fragmento = d.createDocumentFragment();
-    for(let $i = 0;$i < localStorage.length;$i++){
-        const $boton = d.createElement("button");
-        $boton.textContent = localStorage.key($i);
-        $fragmento.appendChild($boton);
-    }
-    $escoger.insertBefore($fragmento,$cambiarUser);
-}
-
-const CREARUSUARIO = () => {
-    const DATOS = {
-        scoreMax:0,
-        recordQ:0,
-        ultimaVez:FECHA()
-    };
-    localStorage.setItem($inputLogin.value,JSON.stringify(DATOS));
-    ENTRAR();
-}
-
-const VERIFICAR = () => {
+const ComprobarSiExisteUsuario = () => {
     let a = 0;
-    for(let $i = 0;$i < localStorage.length;$i++){
-        if($inputLogin.value === localStorage.key($i)) a++;
+    for(let $i = 0; $i < localStorage.length; $i++){
+        if($inputUsuario.value === localStorage.key($i)) a++;
     }
-    if(a>0){
-        d.getElementById("error").textContent = "Este usuario ya existe :(" 
-        d.getElementById("nice").textContent = ""
+    if(a > 0){
+        $txtError.textContent = "Este usuario ya Existe"
     }else{
-        d.getElementById("nice").textContent = "Genial Nickname"; 
-        d.getElementById("error").textContent = "";
-        return 1;
+        $txtError.textContent = "";
+        CrearUsuario();
+        MostrarUsuarios();
+        $contLogin.reset();
     }
 }
 
-const ENTRAR = (user = "") => {
-    $principal.classList.add("esconder");
-    $inico.classList.remove("esconder");
-    usuario = user || $inputLogin.value;
-    const datosUser = JSON.parse(localStorage.getItem(usuario));
-    d.getElementById("infoUsuario").innerHTML = `
-        <p class="usuario" id="usuario"><span class="subTxt">Usuario:</span> ${usuario}</p>
-        <p class="usuario" id="scoreMax"><span class="subTxt">Puntuaci&oacute;n Maxima:</span> ${datosUser.scoreMax}</p>
-        <p class="usuario" id="recordQu"><span class="subTxt">Respuestas Seguidas:</span> ${datosUser.recordQ}</p>
-    `;
+const CrearUsuario = () => {
+    localStorage.setItem($inputUsuario.value,JSON.stringify({
+        scoreMax:0,
+        lvl:0,
+        xp:0
+    }));
 }
 
-//EVENTOS
-window.addEventListener("load",() => GETUSUARIOS());
+// EVENTOS
+window.addEventListener("load",() =>    MostrarUsuarios());
 
-$formulario.addEventListener("submit",(e)=>{
-    e.preventDefault();
-    let a = 0;
-    ($inputLogin.value === "") ? ERRORLOGIN() : a = VERIFICAR();
-    if(a===1) CREARUSUARIO();
+$btnElegirUsuario.addEventListener("click",() => EsconderContRegistro());
+
+$btnCrearNuevoUsuario.addEventListener("click",() => EsconderContRegistro());
+
+$contLogin.addEventListener("submit",() => {
+    ($inputUsuario.value === "") ? $txtError.textContent = "Ingresar Usuario" : ComprobarSiExisteUsuario();
 });
 
-$inputLogin.addEventListener("blur",() => {
-    ($inputLogin.value === "") ? ERRORLOGIN() : VERIFICAR();
-});
-
-$elegir.addEventListener("click",() => {
-    ESCONDER();
-});
-
-$cambiarUser.addEventListener("click",() => {
-    ESCONDER();
-});
-
-d.addEventListener("click",(e) => {
-    if(e.target.matches('#escoger button')){
-        usuario = e.target.textContent;
-        ENTRAR(usuario);
-    }
+$btnCerrarSesion.addEventListener("click",() => {
+    $contJuego.classList.toggle("esconder");
+    $contRegistro.classList.toggle("esconder");
 });
