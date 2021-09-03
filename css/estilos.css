@@ -127,14 +127,14 @@ body{
         min-height: 100vh;
         padding-top: 5em;
     }
-    .datosJugador, .escogerModoJuego{
+    .datosJugador, .escogerModoJuego, .datosJuego{
         width: 90%;
         margin: auto;
         background:var(--colorFondoPrincipal);
         padding:20px;
         border-radius: 20px;
     }
-    .datosJugador p{margin: 20px 0;}
+    .datosJugador p, .datosJuego p{margin: 20px 0;}
     .txtInfo{
         color:var(--colorLetraSecundario);
         font-size: var(--sizeLetraGrande);
@@ -152,13 +152,36 @@ body{
     .contCerrarSesion{
         text-align: end;
     }
-    .contCerrarSesion a{
+    .contCerrarSesion a,.contTerminarJuego a{
         text-decoration: none;
         color:var(--colorLetraSecundario);
         font-size: var(--sizeLetraMediano);
         font-family: 'regular';
         padding: 5px 10px;
         background: var(--colorSecundario);
+    }
+    .datosJuego{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .datosJuego div{width: 50%;}
+    .contTiempo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .txtTiempo{
+        font-size: 36px;
+        color:var(--colorLetra);
+        font-family: 'fuerte';
+    }
+    .datosJuego .txtInfo, .datosJuego .txtDatos{font-size: var(--sizeLetraMediano);}
+    .contTerminarJuego{
+        min-width: 100%;
+        height: auto;
+    }
+    .contTerminarJuego{
+        text-align: end;
     }
 }
 

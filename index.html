@@ -12,7 +12,7 @@
         <p class="titulo">Aprende Jugando</p>
     </header>
     <!-- CONTENEDOR REGISTRO -->
-    <section class="esconder" id="registro">
+    <section class="" id="registro">
         <div class="registro">
             <!-- LOGIN -->
             <form class="card cardRegistro" id="login">
@@ -34,13 +34,14 @@
             </div>
         </div>
     </section>
-    <section id="juego">
+    <!-- CONTENEDOR DATOS JUEGO -->
+    <section id="juego1" class="esconder">
         <div class="juego">
             <div class="datosJugador" id="datosJugador">
-                <p><span class="txtInfo">Usuario: </span><span class="txtDatos">Sarita</span></p>
-                <p><span class="txtInfo">M&aacute;xima puntuaci&oacute;n: </span><span class="txtDatos">0</span></p>
-                <p><span class="txtInfo">Nivel: </span><span class="txtDatos">0</span></p>
-                <p><span class="txtInfo">XP: </span><span class="txtDatos">0/100</span></p>
+                <p><span class="txtInfo">Usuario: </span><span class="txtDatos" id="txtUsuario">Sarita</span></p>
+                <p><span class="txtInfo">M&aacute;xima puntuaci&oacute;n: </span><span class="txtDatos" id="txtMaximaPuntuacion"></span></p>
+                <p><span class="txtInfo">Nivel: </span><span class="txtDatos" id="txtNivel"></span></p>
+                <p><span class="txtInfo">XP: </span><span class="txtDatos" id="txtXP"></span></p>
                 <div class="contCerrarSesion">
                     <a href="#" id="cerrarSesion">Cerrar Sesi&oacute;n</a>
                 </div>
@@ -50,6 +51,24 @@
                 <button value="facil">Fac&iacute;l</button>
                 <button value="intermedio">Intermedio</button>
                 <button value="dificil">Dif&iacute;cil</button>
+            </div>
+        </div>
+    </section>
+    <!-- JUEGO -->
+    <section id="juego2" class="esconder">
+        <div class="juego">
+            <div class="datosJuego">
+                <div>
+                    <p><span class="txtInfo">Modo: </span><span class="txtDatos" id="txtModo"></span></p>
+                    <p><span class="txtInfo">Puntuaci&oacute;n: </span><span class="txtDatos" id="txtPuntuacion">0</span></p>
+                    <p><span class="txtInfo">Vidas: </span><span class="txtDatos" id="txtVidas">3</span></p>
+                </div>
+                <div class="contTiempo">
+                    <p><span class="txtTiempo" id="txtTiempo"></span><span class="txtDatos">s</span></p>
+                </div>
+                <div class="contTerminarJuego">
+                    <a href="#" id="terminarJuego">Terminar Juego</a>
+                </div>
             </div>
         </div>
     </section>
