@@ -91,7 +91,9 @@ const IniciarJuego = () => {
     contador = setInterval(() => {
         tiempo--;
         $txtTiempo.textContent = tiempo;
-        if(tiempo === 0) ReiniciarJuego();
+        if(tiempo === 0){
+            ReiniciarJuego();
+        }
     },1000);
 }
 
@@ -120,7 +122,6 @@ const Facil = () => {
     let ope = `${num1} ${operaciones[r]} ${num2}`;
     $txtPregunta.textContent = ope;
     respuesta = Resolver(ope);
-    console.log(respuesta);
     PosiblesRespuestas();
 }
 
@@ -216,7 +217,6 @@ const VerificarRespuestas = (respuestaUsuario) => {
 
 const GuardarDatos = () => {
     let Datos = JSON.parse(localStorage.getItem(usuario));
-    console.log(Datos.lvl);
     if(Datos.scoreMax < puntuacion) newScoreMax = puntuacion;
     else newScoreMax = Datos.scoreMax;
 
@@ -232,7 +232,6 @@ const GuardarDatos = () => {
         lvl:nivel,
         xp:xpJugador
     };
-    console.log(newDatos);
     localStorage.removeItem(usuario);
     localStorage.setItem(usuario,JSON.stringify(newDatos));
 
@@ -285,5 +284,7 @@ $btnTerminarJuego.addEventListener("click", () => {
 $btnRegresarInicio.addEventListener("click",() => {
     $contFinalizarJuego.classList.add("esconder");
     EntrarJuego();
+    Resetear();
+    $contJuego2.classList.add("esconder");
 });
 
