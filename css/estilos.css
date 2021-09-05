@@ -127,7 +127,7 @@ body{
         min-height: 100vh;
         padding-top: 5em;
     }
-    .datosJugador, .escogerModoJuego, .datosJuego{
+    .datosJugador, .escogerModoJuego, .datosJuego, .pantallaJuego{
         width: 90%;
         margin: auto;
         background:var(--colorFondoPrincipal);
@@ -182,6 +182,40 @@ body{
     }
     .contTerminarJuego{
         text-align: end;
+    }
+    .pantallaJuego{
+        margin-top: 20px;
+    }
+    .pantallaJuego .titulo{
+        font-family: 'regular';
+        text-align: center;
+    }
+    .txtPregunta{
+        font-size: var(--sizeLetraGrande);
+        color:var(--colorLetra);
+        text-align: center;
+        margin-top: 20px;
+        font-family: 'fuerte';
+    }
+    .respuestas{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .respuestas button{
+        max-width: 70px;
+        width: 100%;
+    }
+    .finalizarJuego{
+        width: 100%;
+        min-height: 100vh;
+        background: rgba(0,0,0,0.8);
+        position: fixed;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5%;
     }
 }
 

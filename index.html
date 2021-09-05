@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aprende Jugando</title>
     <link rel="stylesheet" href="./css/estilos.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
         <p class="titulo">Aprende Jugando</p>
     </header>
     <!-- CONTENEDOR REGISTRO -->
-    <section class="" id="registro">
+    <section id="registro" class="">
         <div class="registro">
             <!-- LOGIN -->
             <form class="card cardRegistro" id="login">
@@ -37,6 +37,7 @@
     <!-- CONTENEDOR DATOS JUEGO -->
     <section id="juego1" class="esconder">
         <div class="juego">
+            <!-- DATOS DEL JUGADOR -->
             <div class="datosJugador" id="datosJugador">
                 <p><span class="txtInfo">Usuario: </span><span class="txtDatos" id="txtUsuario">Sarita</span></p>
                 <p><span class="txtInfo">M&aacute;xima puntuaci&oacute;n: </span><span class="txtDatos" id="txtMaximaPuntuacion"></span></p>
@@ -46,6 +47,7 @@
                     <a href="#" id="cerrarSesion">Cerrar Sesi&oacute;n</a>
                 </div>
             </div>
+            <!-- ESCOGER MODO DE JUEGO -->
             <div class="escogerModoJuego" id="escogerModoJuego">
                 <p class="titulo">Modo de Juego</p>
                 <button value="facil">Fac&iacute;l</button>
@@ -57,10 +59,11 @@
     <!-- JUEGO -->
     <section id="juego2" class="esconder">
         <div class="juego">
+            <!-- INFORMACION DEL JUEGO -->
             <div class="datosJuego">
                 <div>
                     <p><span class="txtInfo">Modo: </span><span class="txtDatos" id="txtModo"></span></p>
-                    <p><span class="txtInfo">Puntuaci&oacute;n: </span><span class="txtDatos" id="txtPuntuacion">0</span></p>
+                    <p><span class="txtInfo">Puntuaci&oacute;n: </span><span class="txtDatos" id="txtPuntuacion"></span></p>
                     <p><span class="txtInfo">Vidas: </span><span class="txtDatos" id="txtVidas">3</span></p>
                 </div>
                 <div class="contTiempo">
@@ -68,6 +71,20 @@
                 </div>
                 <div class="contTerminarJuego">
                     <a href="#" id="terminarJuego">Terminar Juego</a>
+                </div>
+            </div>
+            <!-- PREGUNTAS -->
+            <div class="pantallaJuego">
+                <p class="titulo">Pregunta <span id="txtNumeroPregunta"></span></p>
+                <p class="txtPregunta" id="txtPregunta"></p>
+                <div class="respuestas" id="respuestas">
+                </div>
+            </div>
+            <!-- FINALIZAR JUEGO -->
+            <div id="finalizarJuego" class="esconder">
+                <div class="finalizarJuego">
+                    <p class="titulo">Se Termino...</p>
+                    <button id="regresarInicio">Terminar</button>
                 </div>
             </div>
         </div>

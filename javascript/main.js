@@ -9,10 +9,14 @@ const d = document, $btnElegirUsuario = d.getElementById("elegirUsuario"),
     $txtUsuario = d.getElementById("txtUsuario"),$txtMaximaPuntuacion = d.getElementById("txtMaximaPuntuacion"),
     $txtNivel = d.getElementById("txtNivel"),$txtXP = d.getElementById("txtXP"),$contJuego2 = d.getElementById("juego2"),
     $txtModo = d.getElementById("txtModo"),$txtTiempo = d.getElementById("txtTiempo"),$txtVidas = d.getElementById("txtVidas"),
-    $btnTerminarJuego = d.getElementById("terminarJuego");
+    $btnTerminarJuego = d.getElementById("terminarJuego"),$txtPregunta = d.getElementById("txtPregunta"),
+    $txtNumeroPregunta = d.getElementById("txtNumeroPregunta"),$contRespuestas = d.getElementById("respuestas"),
+    $txtPuntuacion = d.getElementById("txtPuntuacion"),$btnRegresarInicio = d.getElementById("regresarInicio"),
+    $contFinalizarJuego = d.getElementById("finalizarJuego");
 
 
-let usuario,modoJuego,tiempo,vidas=3,contador;
+let usuario,modoJuego,tiempo,vidas=3,contador,pregunta = 0,operaciones = ["+","-","*"],respuesta,puntuacion = 0,
+    newScoreMax,nivel,xpJugador;
 
 // FUNCIONES
 const EsconderContRegistro = () => {
@@ -87,15 +91,151 @@ const IniciarJuego = () => {
     contador = setInterval(() => {
         tiempo--;
         $txtTiempo.textContent = tiempo;
-        if(tiempo === 0) Resetear();
+        if(tiempo === 0) ReiniciarJuego();
     },1000);
+}
+
+const ReiniciarJuego = () => {
+    $contFinalizarJuego.classList.remove("esconder");
+    GuardarDatos();
+    Resetear();
 }
 
 const Resetear = () =>{
     tiempo = 0;
     vidas = 3;
     modoJuego = "";
+    pregunta = 0;
+    puntuacion = 0;
+    $txtPuntuacion.textContent = 0;
     clearInterval(contador);
+}
+
+const NumeroRandom = () => Math.floor(Math.random() * 3);
+
+const Facil = () => {
+    let num1 = Math.floor(Math.random() * 10);
+    let num2 = Math.floor(Math.random() * 10);
+    let r = NumeroRandom();
+    let ope = `${num1} ${operaciones[r]} ${num2}`;
+    $txtPregunta.textContent = ope;
+    respuesta = Resolver(ope);
+    console.log(respuesta);
+    PosiblesRespuestas();
+}
+
+
+const Intermedio = () => {
+    let num1 = Math.floor(Math.random() * 10);
+    let num2 = Math.floor(Math.random() * 10);
+    let num3 = Math.floor(Math.random() * 10);
+    let r = NumeroRandom();
+    let rr = NumeroRandom();
+    let ope = `${num1} ${operaciones[r]} ${num2} ${operaciones[rr]} ${num3}`;
+    $txtPregunta.textContent = ope;
+    respuesta = Resolver(ope);
+    PosiblesRespuestas();
+
+}
+
+const Dificil = () => {
+    let num1 = Math.floor(Math.random() * 10);
+    let num2 = Math.floor(Math.random() * 10);
+    let num3 = Math.floor(Math.random() * 10);
+    let num4 = Math.floor(Math.random() * 10);
+    let r = NumeroRandom();
+    let rr = NumeroRandom();
+    let rrr = NumeroRandom();
+    let ope = `${num1} ${operaciones[r]} ${num2} ${operaciones[rr]} ${num3} ${operaciones[rrr]} ${num4}`;
+    $txtPregunta.textContent = ope;
+    respuesta = Resolver(ope);
+    PosiblesRespuestas();
+
+}
+
+const ModoJuegoElegido = () => {
+    pregunta++;
+    switch(modoJuego){
+        case 'facil':
+            Facil();
+            break;
+        case 'intermedio':
+            Intermedio();
+            break;
+        default:
+            Dificil();
+            break;
+    }
+    $txtNumeroPregunta.textContent = pregunta;
+}
+
+const Resolver = (ope) => {
+    return new Function('return ' + ope)();
+}
+
+const PosiblesRespuestas = () => {
+    const $f = d.createDocumentFragment();
+    let btn1 = d.createElement("button");
+    let btn2 = d.createElement("button");
+    let btn3 = d.createElement("button");
+    btn1.textContent = `${respuesta + 1}`;
+    btn2.textContent = `${respuesta}`;
+    btn3.textContent = `${respuesta - 1}`;
+    $f.appendChild(btn1);
+    $f.appendChild(btn2);
+    $f.appendChild(btn3);
+    $contRespuestas.replaceChildren($f);
+}
+
+const VerificarRespuestas = (respuestaUsuario) => {
+    if(respuestaUsuario === respuesta){
+        switch(modoJuego){
+            case 'facil':
+                tiempo+=2;
+                puntuacion+=2;
+                break;
+            case 'intermedio':
+                tiempo += 3;
+                puntuacion+=5;
+                break;
+            default:
+                tiempo += 5;
+                puntuacion += 10;
+                break;
+        }
+        $txtTiempo.textContent = tiempo;
+        $txtPuntuacion.textContent = puntuacion;
+    }else{
+        tiempo -= 2;
+        vidas -= 1;
+        $txtVidas.textContent = vidas;
+        if(vidas === 0) ReiniciarJuego();
+    }
+    ModoJuegoElegido();
+}
+
+const GuardarDatos = () => {
+    let Datos = JSON.parse(localStorage.getItem(usuario));
+    console.log(Datos.lvl);
+    if(Datos.scoreMax < puntuacion) newScoreMax = puntuacion;
+    else newScoreMax = Datos.scoreMax;
+
+    xpJugador = Datos.xp + puntuacion;
+    nivel = Math.floor(xpJugador/100)+ Datos.lvl;
+
+    if(xpJugador/100 >= 1){
+        xpJugador-= (100*Math.floor(xpJugador/100));
+    }
+
+    let newDatos = {
+        scoreMax:newScoreMax,
+        lvl:nivel,
+        xp:xpJugador
+    };
+    console.log(newDatos);
+    localStorage.removeItem(usuario);
+    localStorage.setItem(usuario,JSON.stringify(newDatos));
+
 }
 
 // EVENTOS
@@ -113,6 +253,7 @@ $contLogin.addEventListener("submit",(e) => {
 $btnCerrarSesion.addEventListener("click",() => {
     $contJuego.classList.toggle("esconder");
     $contRegistro.classList.toggle("esconder");
+    $txtError.textContent = "";
 });
 
 d.addEventListener("click",(e) => {
@@ -125,11 +266,24 @@ d.addEventListener("click",(e) => {
     if(e.target.matches("#escogerModoJuego button")){
         modoJuego = e.target.value;
         IniciarJuego();
+        ModoJuegoElegido();
+    }
+
+    if(e.target.matches("#respuestas button")){
+        VerificarRespuestas(parseInt(e.target.textContent));
     }
 });
 
 $btnTerminarJuego.addEventListener("click", () => {
+    GuardarDatos();
     Resetear();
     $contJuego2.classList.add("esconder");
     $contJuego.classList.remove("esconder");
+    EntrarJuego();
 });
+
+$btnRegresarInicio.addEventListener("click",() => {
+    $contFinalizarJuego.classList.add("esconder");
+    EntrarJuego();
+});
+
